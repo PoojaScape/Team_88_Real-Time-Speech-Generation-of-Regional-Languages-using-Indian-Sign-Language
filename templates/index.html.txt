@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Translator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Sign Language Translator</h1>
+    <form id="translate-form">
+        <label for="detected_text">Enter Text:</label>
+        <input type="text" id="detected_text" name="detected_text" required>
+        
+        <label for="language">Choose Language:</label>
+        <select id="language" name="language" required>
+            <option value="telugu">Telugu</option>
+            <!-- Add more languages as needed -->
+        </select>
+        
+        <button type="submit">Translate</button>
+    </form>
+
+    <h2 id="result"></h2>
+
+    <script>
+        $(document).ready(function() {
+            $("#translate-form").on("submit", function(event) {
+                event.preventDefault();
+                
+                const detectedText = $("#detected_text").val();
+                const selectedLanguage = $("#language").val();
+                
+                $.ajax({
+                    url: "http://127.0.0.1:5000/translate_telugu",  // Your Flask endpoint
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ detected_text: detectedText }),
+                    success: function(response) {
+                        $("#result").text("Translated Text: " + response.translated_text);
+                    },
+                    error: function(error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

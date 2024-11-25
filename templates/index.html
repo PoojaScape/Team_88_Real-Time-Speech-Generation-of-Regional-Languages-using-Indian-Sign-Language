@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Symphony: Translate Sign Gestures to Speech</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>SIGN SYMPHONY</h1>
+
+    <!-- Select your language preference -->
+    <select id="language">
+        <option value="telugu">Telugu</option>
+        <option value="marathi">Marathi</option>
+        <option value="tamil">Tamil</option>
+        <option value="hindi">Hindi</option> 
+        <option value="malayalam">Malayalam</option>
+        <option value="kannada">Kannada</option>  
+
+    </select><br>
+
+    <!-- Record your gestures -->
+    <div>
+        <img src="{{ url_for('video_feed') }}" id="video" width="640" height="480">
+    </div>
+    <div>
+        <button id="startRecording">Start Recording</button>
+        <button id="stopRecording">Stop Recording</button>
+    </div>
+    <h2>Predicted Gesture: <span id="gestureResult">None</span></h2>
+
+    <h2 id="translated_text">Translation Result:</h2>
+    <audio id="audio_player" controls style="display: none;"></audio>
+
+    <script>
+        $(document).ready(function() {
+            // Start recording
+            $('#startRecording').click(function() {
+                $.post('/start_recording', function(response) {
+                    console.log(response.status);
+                    $('#gestureResult').text("Recording...");
+                });
+            });
+
+            // Stop recording and predict gesture
+            $('#stopRecording').click(function() {
+                const selectedLanguage = $('#language').val();
+
+                $.post('/stop_recording', function(response) {
+                    $('#gestureResult').text(response.gesture);
+                    
+                    console.log(response.gesture);
+                    console.log(selectedLanguage);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/translate',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            detected_text: response.gesture,
+                            language: selectedLanguage
+                        }),
+                        success: function(response) {
+                            console.log(response.translated_text)
+                            $('#translated_text').text("Translated Text: " + response.translated_text);
+                            const audioUrl = response.audio_url;
+                            $('#audio_player').attr('src', audioUrl).show().get(0).play(); // Autoplay the audio
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Translation error: ' + xhr.responseJSON.error);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
