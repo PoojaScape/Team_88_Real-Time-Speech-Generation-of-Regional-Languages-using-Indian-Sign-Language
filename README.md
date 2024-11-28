@@ -17,4 +17,4 @@ To run this application, we first need to create a virtual environment, followed
 Upon initialization of TensorFlow, Hugging Face Transformers and the Flask Application, Flask will start a server at http://127.0.0.1:5000, which will direct you to our application.
 
 Note: TensorFlow version used is 2.15.0
-      To install TensorFlow 2.15.0, type `pip install tensorflow==2.15.0` on your terminal.
+      To install TensorFlow 2.15.0, execute `pip install tensorflow==2.15.0` on your terminal.
