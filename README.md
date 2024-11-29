@@ -8,16 +8,7 @@ The user interface provides an interactive experience, featuring live video feed
 Tech Stack: 
 This project uses a robust technology stack, integrating both backend and frontend technologies. The backend is powered by Python, Flask, TensorFlow, and Hugging Face Transformers, while the frontend leverages HTML, CSS, and JavaScript. Key libraries include MediaPipe and OpenCV for gesture recognition, pre-trained transformer models for language translation, and VitsModel for TTS conversion. Data handling is performed using pandas and numpy.
 
-In order to run this application, the following libraries need to be installed - 
-1. tensorflow 2.15.0 `pip install tensorflow==2.15.0`
-2. flask `pip install flask`
-3. pytorch `pip install torch`
-4. numpy `pip install numpy`
-5. mediapipe `pip install mediapipe`
-6. gtts `pip install gTTS`
-7. pandas `pip install pandas`
-8. transformers `pip install transformers`
-9. cv2 `pip install opencv-python`
+In order to run this application, run the command - `pip install -r requirements.txt`
 
 We first need to create a virtual environment, followed by activation of virtual environment. Then navigate to directory containing your project and run the app.py file. The commands for executing this is as follows:
 1. python -m venv myenv
