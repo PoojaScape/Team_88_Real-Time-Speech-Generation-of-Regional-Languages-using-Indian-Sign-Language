@@ -8,7 +8,7 @@ The user interface provides an interactive experience, featuring live video feed
 Tech Stack: 
 This project uses a robust technology stack, integrating both backend and frontend technologies. The backend is powered by Python, Flask, TensorFlow, and Hugging Face Transformers, while the frontend leverages HTML, CSS, and JavaScript. Key libraries include MediaPipe and OpenCV for gesture recognition, pre-trained transformer models for language translation, and VitsModel for TTS conversion. Data handling is performed using pandas and numpy.
 
-In order to run this application, run the command - `pip install -r requirements.txt`
+In order to install all the necessary libraries required for successful execution of the application, run the command - `pip install -r requirements.txt`
 
 We first need to create a virtual environment, followed by activation of virtual environment. Then navigate to directory containing your project and run the app.py file. The commands for executing this is as follows:
 1. python -m venv myenv
