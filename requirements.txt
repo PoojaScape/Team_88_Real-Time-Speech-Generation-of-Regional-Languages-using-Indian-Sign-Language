@@ -1,0 +1,9 @@
+pip install opencv-python
+pip install numpy
+pip install pandas
+pip install tensorflow==2.15.0
+pip install flask
+pip install torch
+pip install mediapipe
+pip install gTTS
+pip install transformers
